@@ -19,9 +19,31 @@ public class Student1 extends PodPlugIn {
     
     //-------------------------------------------------------
     // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
+    static int nBCheckPoint;
+    public void move()
+    {
+        if(getNextCheckPointDistance() < 2f)
+        {
+            incSpeed(-1f);
+        }
+        else
+        {
+            incSpeed(1f);
+            if(getShipBoostLevel() == 100 && getNextCheckPointDistance() > 10f)
+            {
+                useBoost();
+            }
+        }
+    }
+    public void chekpoint()
+    {
+        nBCheckPoint = getNbValidCheckPoints();
+        getNextCheckPointIndex()
 
-    
-    
+                //index checkpoint +1 modulo nombre de checkpoint
+    }
+
+
     // END OF VARIABLES/FUNCTIONS AREA
     //-------------------------------------------------------
     
@@ -31,12 +53,13 @@ public class Student1 extends PodPlugIn {
         //-------------------------------------------------------
         // WRITE YOUR OWN CODE HERE
         
-        setPlayerName("Student 1");
-        selectShip(1);
+        setPlayerName("Student 28");
+        selectShip(28);
         setPlayerColor(255,255,255,255);
 
-        moveToNextCheckPoint(0.5f);
-
+        //moveToNextCheckPoint(0.5f);
+        move();
+        turnTowardNextCheckPoint();
         // END OF CODE AREA
         //-------------------------------------------------------
     }
