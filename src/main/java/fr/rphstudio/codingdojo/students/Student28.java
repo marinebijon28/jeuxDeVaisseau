@@ -25,6 +25,12 @@ public class Student28 extends PodPlugIn {
             incSpeed(1f);
         else if (getNextCheckPointDistance() > 1)
             incSpeed(0.6f);
+
+        if (getShipBoostLevel() == 100)
+            if (getNextCheckPointDistance() > 10f)
+                useBoost();
+        if (getNextCheckPointDistance() < 0.6)
+            incSpeed( 0);
     }
 
     public static float radiantToDegres(float radiant)
@@ -38,13 +44,21 @@ public class Student28 extends PodPlugIn {
         float radiant = (degres / 180) * 3.14f;
         return (radiant);
     }
+    public int chekpoint()
+    {
+        int nBCheckPoint = getNbValidCheckPoints();
+        int indexCheckpoint = getNextCheckPointIndex();
+
+        int nextCheckPoint = (indexCheckpoint+1)% nBCheckPoint;
+        return (nextCheckPoint);
+    }
 
     public void tourner()
     {
         int x_ship = (int)getShipPositionX();
         int y_ship = (int)getShipPositionY();
-        int x_check = (int)getCheckPointPositionX(x_ship);
-        int y_check = (int)getCheckPointPositionY(y_ship);
+        int x_check = (int)getCheckPointPositionX(chekpoint());
+        int y_check = (int)getCheckPointPositionY(chekpoint());
 
         int dy = y_check - y_ship;
         int dx = x_check - x_ship;
@@ -57,6 +71,8 @@ public class Student28 extends PodPlugIn {
         else
             turn(delta_angle);
     }
+
+
 
     // END OF VARIABLES/FUNCTIONS AREA
     //-------------------------------------------------------
@@ -72,15 +88,16 @@ public class Student28 extends PodPlugIn {
         //setPlayerColor(0,0,255,0);
         setPlayerColor( 255, 255, getPlayerColorBlue(), 255);
 
-        turnTowardNextCheckPoint();
+        tourner();
+       // turnTowardNextCheckPoint();
         //moveToNextCheckPoint(0.5f);
        speed();
-        if (getShipBoostLevel() == 100)
+        /*if (getShipBoostLevel() == 100)
             if (getNextCheckPointDistance() > 10f)
                 useBoost();
         if (getNextCheckPointDistance() < 0.6)
-            incSpeed( -1);
-        //if (getNextCheckPointDistance())
+            incSpeed( 0);
+        //if (getNextCheckPointDistance())*/
         System.out.println(getNextCheckPointDistance());
 
         // END OF CODE AREA
