@@ -16,7 +16,8 @@ public class Student28 extends PodPlugIn {
     public Student28(Pod p){
         super(p);
     }
-    
+    static int delta = 0;
+    static int delta_angle = -1;
     //-------------------------------------------------------
     // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
     public  void speed()
@@ -25,12 +26,13 @@ public class Student28 extends PodPlugIn {
             incSpeed(1f);
         else if (getNextCheckPointDistance() > 1)
             incSpeed(0.6f);
+//        if (getNextCheckPointDistance() < 2)
+//            incSpeed( 0);
 
-        if (getShipBoostLevel() == 100)
-            if (getNextCheckPointDistance() > 10f)
-                useBoost();
-        if (getNextCheckPointDistance() < 0.6)
-            incSpeed( 0);
+       // if (getShipBoostLevel() == 100)
+         //   if (getNextCheckPointDistance() > 13f)
+           //     useBoost();
+
     }
 
     public static float radiantToDegres(float radiant)
@@ -46,10 +48,10 @@ public class Student28 extends PodPlugIn {
     }
     public int chekpoint()
     {
-        int nBCheckPoint = getNbValidCheckPoints();
+        int nBCheckPoint = getNbRaceCheckPoints();
         int indexCheckpoint = getNextCheckPointIndex();
 
-        int nextCheckPoint = (indexCheckpoint+1)% nBCheckPoint;
+        int nextCheckPoint = (indexCheckpoint + 1) % nBCheckPoint;
         return (nextCheckPoint);
     }
 
@@ -60,16 +62,29 @@ public class Student28 extends PodPlugIn {
         int x_check = (int)getCheckPointPositionX(chekpoint());
         int y_check = (int)getCheckPointPositionY(chekpoint());
 
+
+
         int dy = y_check - y_ship;
         int dx = x_check - x_ship;
         float delta_check = atan2(dy, dx);
+        delta_check = radiantToDegres(delta_check);
         int res_degres = ((int)delta_check + 360) % 360;
-        int delta_angle = res_degres - (int)getShipAngle();
-        delta_angle = (delta_angle % 360) + 360;
-        if (delta_angle < 180)
-            turn(delta_angle);
-        else
-            turn(delta_angle);
+        System.out.println(res_degres);
+        delta_angle = res_degres - (int)getShipAngle();
+     // delta_angle = (delta_angle % 360) + 360;
+        System.out.print("delta :");
+        System.out.print(getShipAngle());
+        System.out.print("delta_angle :");
+        System.out.println(delta_angle);
+       //if ((int)getShipAngle() != delta_angle)
+       {
+                System.out.println(delta_angle);
+                if (!(delta_angle > 180 && delta_angle < 0))
+                    turn(2);
+                else
+                    turn(-2);
+                delta = delta_angle;
+        }
     }
 
 
@@ -85,20 +100,10 @@ public class Student28 extends PodPlugIn {
         
         setPlayerName("Student 28");
         selectShip(1);
-        //setPlayerColor(0,0,255,0);
         setPlayerColor( 255, 255, getPlayerColorBlue(), 255);
 
-        tourner();
-       // turnTowardNextCheckPoint();
-        //moveToNextCheckPoint(0.5f);
-       speed();
-        /*if (getShipBoostLevel() == 100)
-            if (getNextCheckPointDistance() > 10f)
-                useBoost();
-        if (getNextCheckPointDistance() < 0.6)
-            incSpeed( 0);
-        //if (getNextCheckPointDistance())*/
-        System.out.println(getNextCheckPointDistance());
+         tourner();
+         speed();
 
         // END OF CODE AREA
         //-------------------------------------------------------
