@@ -35,13 +35,13 @@ public class Student1 extends PodPlugIn {
             }
         }
     }
-    public void chekpoint()
+   /* public void chekpoint()
     {
         nBCheckPoint = getNbValidCheckPoints();
         getNextCheckPointIndex()
 
                 //index checkpoint +1 modulo nombre de checkpoint
-    }
+    }*/
 
 
     // END OF VARIABLES/FUNCTIONS AREA
