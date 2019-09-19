@@ -109,19 +109,23 @@ public class Student28 extends PodPlugIn {
         if (getNextCheckPointDistance() > 3)
         {
             incSpeed(1f);
+            System.out.println("boucle 1");
         }
 
         if(tonnageBattery > 50 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
         {
             incSpeed(0.6f);
+            System.out.println("boucle 2");
         }
         else if(tonnageBattery <= 25 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
         {
             incSpeed(0.1f);
+            System.out.println("boucle 3");
         }
         else if(isNextCheckPointCharging() == false && getNextCheckPointDistance() > 13 && getShipBoostLevel() == 100)
         {
             useBoost();
+            System.out.println("boucle 4");
         }
         if (getNextCheckPointDistance() < turnNextCheck)
         {
