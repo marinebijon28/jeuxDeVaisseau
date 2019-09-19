@@ -101,6 +101,11 @@ public class Student28 extends PodPlugIn {
 //        }
  //   }
 
+    public void BoostAndBatterie()
+    {
+
+    }
+
 
 
     // END OF VARIABLES/FUNCTIONS AREA
