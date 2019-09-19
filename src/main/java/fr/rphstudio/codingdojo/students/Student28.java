@@ -16,13 +16,22 @@ public class Student28 extends PodPlugIn {
     public Student28(Pod p){
         super(p);
     }
+    //-------------------------------------------------------
+    // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
     static int delta = 0;
     static int delta_angle = -1;
     static int turnNextCheck = 4;
 
     static float tonnageBattery;
-    //-------------------------------------------------------
-    // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
+
+    static float shipX;
+    static float shipY;
+
+    static float CheckPointX;
+    static float CheckPointY;
+
+    static float speedShip;
+
     public  void speed()
     {
         if (getNextCheckPointDistance() > 3)
@@ -106,27 +115,38 @@ public class Student28 extends PodPlugIn {
     public void BoostAndBatterie()
     {
         tonnageBattery = getShipBatteryLevel();
-        if (getNextCheckPointDistance() > 3)
+        speedShip = getShipSpeed();
+        if (getNextCheckPointDistance() > 5)
         {
             incSpeed(1f);
             System.out.println("boucle 1");
         }
-
-        if(tonnageBattery > 50 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
+        else if(getNextCheckPointDistance() <6 && getNextCheckPointDistance() >3)
         {
             incSpeed(0.6f);
-            System.out.println("boucle 2");
         }
-        else if(tonnageBattery <= 25 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
+        else if(speedShip > 2)
         {
-            incSpeed(0.1f);
-            System.out.println("boucle 3");
+            incSpeed(-0.f);
         }
-        else if(isNextCheckPointCharging() == false && getNextCheckPointDistance() > 13 && getShipBoostLevel() == 100)
-        {
-            useBoost();
-            System.out.println("boucle 4");
-        }
+
+
+
+//        if(tonnageBattery > 50 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
+//        {
+//            incSpeed(0.6f);
+//            System.out.println("boucle 2");
+//        }
+//        else if(tonnageBattery <= 25 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
+//        {
+//            incSpeed(0.3f);
+//            System.out.println("boucle 3");
+//        }
+//        else if(isNextCheckPointCharging() == false && getNextCheckPointDistance() > 13 && getShipBoostLevel() == 100)
+//        {
+//            useBoost();
+//            System.out.println("boucle 4");
+//        }
         if (getNextCheckPointDistance() < turnNextCheck)
         {
             System.out.println("test");
@@ -141,12 +161,23 @@ public class Student28 extends PodPlugIn {
 
         //       incSpeed( 0);
 
-        if (getShipBoostLevel() == 100)
-            if (getNextCheckPointDistance() > 13f)
-                useBoost();
+        if (getShipBoostLevel() == 100 && getNextCheckPointDistance() > 11 && getPreviousCheckPointDistance() > 3)
+        {
+            useBoost();
+        }
     }
 
-
+//    public float distance()
+//    {
+//        CheckPointX = getCheckPointPositionX();
+//        CheckPointY = getSecondCheckPointY();
+//
+//        shipX = getShipPositionX();
+//        shipY = getShipPositionY();
+//
+//        return
+//
+//    }
 
     // END OF VARIABLES/FUNCTIONS AREA
     //-------------------------------------------------------
@@ -157,7 +188,7 @@ public class Student28 extends PodPlugIn {
         //-------------------------------------------------------
         // WRITE YOUR OWN CODE HERE
         
-        setPlayerName("Student 28");
+        setPlayerName("Student 28 " + getShipSpeed());
         selectShip(1);
         setPlayerColor( 255, 255, getPlayerColorBlue(), 255);
 
