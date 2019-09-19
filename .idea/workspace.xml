@@ -24,7 +24,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/fr/rphstudio/codingdojo/students" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2816092" />
@@ -76,6 +76,7 @@
     <configuration name="Download" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="fr.rphstudio.codingdojo.launcher.MainLauncher" />
       <module name="Student1" />
+      <option name="PROGRAM_PARAMETERS" value="-window" />
       <option name="VM_PARAMETERS" value="-Djava.library.path=lib -cp ./*:students/*" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/resources" />
       <method v="2">
