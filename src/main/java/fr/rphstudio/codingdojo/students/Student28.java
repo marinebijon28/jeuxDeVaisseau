@@ -16,11 +16,15 @@ public class Student28 extends PodPlugIn {
     public Student28(Pod p){
         super(p);
     }
-    static int delta = 0;
+    static float delta = 0;
     static int delta_angle = -1;
+<<<<<<< Updated upstream
     static int turnNextCheck = 4;
 
     static float tonnageBattery;
+=======
+    static float turnNextCheck = 4f;
+>>>>>>> Stashed changes
     //-------------------------------------------------------
     // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
     public  void speed()
@@ -29,13 +33,14 @@ public class Student28 extends PodPlugIn {
             incSpeed(1f);
         else if (getNextCheckPointDistance() > 1)
             incSpeed(0.6f);
-        if (getNextCheckPointDistance() < turnNextCheck)
+        if (getNextCheckPointDistance() < turnNextCheck && delta < getNextCheckPointDistance())
         {
             System.out.println("test");
             float x_check = getCheckPointPositionX(getNextCheckPointIndex() + 1);
             float y_check = getCheckPointPositionY(getNextCheckPointIndex() + 1);
            // getNextCheckPointDistance();
             turnTowardPosition(x_check, y_check);
+            delta = getNextCheckPointDistance();
 
         }
         else
