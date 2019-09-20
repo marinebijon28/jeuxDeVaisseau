@@ -32,6 +32,7 @@ public class Student28 extends PodPlugIn {
 
     static float speedShip;
 
+
     public  void speed()
     {
         if (getNextCheckPointDistance() > 3)
@@ -52,10 +53,10 @@ public class Student28 extends PodPlugIn {
 
      //       incSpeed( 0);
 
-        if (getShipBoostLevel() == 100)
-            if (getNextCheckPointDistance() > 13f)
-                useBoost();
-
+        if (getShipBoostLevel() == 100 && getNextCheckPointDistance() > 13f && getPreviousCheckPointDistance() > 4)
+        {
+            useBoost();
+        }
     }
 
     public static float radiantToDegres(float radiant)
@@ -116,20 +117,32 @@ public class Student28 extends PodPlugIn {
     {
         tonnageBattery = getShipBatteryLevel();
         speedShip = getShipSpeed();
-        if (getNextCheckPointDistance() > 5)
+        System.out.println(speedShip);
+        if (getNextCheckPointDistance2() > 6)
         {
-            incSpeed(1f);
+            incSpeed(0.8f);
             System.out.println("boucle 1");
+            if (getShipBoostLevel() == 100 && getNextCheckPointDistance() > 11 && getPreviousCheckPointDistance() > 4)
+            {
+                useBoost();
+            }
         }
-        else if(getNextCheckPointDistance() <6 && getNextCheckPointDistance() >3)
+        else if(getSecondCheckPointDistance() < 10 && speedShip > 6)
         {
-            incSpeed(0.6f);
+            incSpeed(0.4f);
         }
-        else if(speedShip > 2)
+        else if(getNextCheckPointDistance2() < 6 && getNextCheckPointDistance2() > 3)
         {
-            incSpeed(-0.f);
+            incSpeed(0.5f);
         }
-
+        else if( speedShip < 2)
+        {
+            incSpeed(0.5f);
+        }
+        else if(speedShip > 6)
+        {
+            incSpeed(0.3f);
+        }
 
 
 //        if(tonnageBattery > 50 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
@@ -147,7 +160,7 @@ public class Student28 extends PodPlugIn {
 //            useBoost();
 //            System.out.println("boucle 4");
 //        }
-        if (getNextCheckPointDistance() < turnNextCheck)
+        if (getNextCheckPointDistance2() < 4 && speedShip >3 )
         {
             System.out.println("test");
             float x_check = getCheckPointPositionX(getNextCheckPointIndex() + 1);
@@ -157,14 +170,32 @@ public class Student28 extends PodPlugIn {
 
         }
         else
-            turnTowardNextCheckPoint();
+            turnTowardPosition(getCheckPointPositionX(getNextCheckPointIndex()),
+                    getCheckPointPositionY(getNextCheckPointIndex()));
 
         //       incSpeed( 0);
-
-        if (getShipBoostLevel() == 100 && getNextCheckPointDistance() > 11 && getPreviousCheckPointDistance() > 3)
+        if (getShipBoostLevel() == 100 && getNextCheckPointDistance2() > 11 && getPreviousCheckPointDistance() > 4)
         {
             useBoost();
         }
+    }
+
+    public float distance(float X1, float Y1,float CX, float CY)
+    {
+        float resultSQRT;
+        resultSQRT = ((CX - X1)*(CX - X1) + (CY - Y1)*(CY - Y1));
+        return resultSQRT;
+    }
+    public float getNextCheckPointDistance2()
+    {
+        float checkPointX = getNextCheckPointX();
+        float checkPointY = getNextCheckPointY();
+
+        float shipPositionX = getShipPositionX();
+        float shipPositionY = getShipPositionY();
+
+        return distance(shipPositionX, shipPositionY, checkPointX, checkPointY);
+
     }
 
 //    public float distance()
@@ -188,7 +219,7 @@ public class Student28 extends PodPlugIn {
         //-------------------------------------------------------
         // WRITE YOUR OWN CODE HERE
         
-        setPlayerName("Student 28 " + getShipSpeed());
+        setPlayerName("Student 28 " + speedShip);
         selectShip(1);
         setPlayerColor( 255, 255, getPlayerColorBlue(), 255);
 
