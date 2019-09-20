@@ -51,7 +51,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Compile Coding Dojo PlugIn WIN32">
+  <component name="RunManager" selected="Application.Compile Coding Dojo PlugIn UNIX">
     <configuration name="Compile Coding Dojo PlugIn UNIX" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="fr.rphstudio.codingdojo.launcher.MainLauncher" />
       <module name="Student1" />
