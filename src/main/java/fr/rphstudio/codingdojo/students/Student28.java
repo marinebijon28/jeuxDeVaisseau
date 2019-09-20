@@ -16,25 +16,18 @@ public class Student28 extends PodPlugIn {
     public Student28(Pod p){
         super(p);
     }
-<<<<<<< HEAD
     static float delta = 0;
-=======
     //-------------------------------------------------------
     // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
-    static int delta = 0;
->>>>>>> Lexo
+
     static int delta_angle = -1;
-<<<<<<< Updated upstream
+
     static int turnNextCheck = 4;
 
     static float tonnageBattery;
-<<<<<<< HEAD
-=======
-    static float turnNextCheck = 4f;
->>>>>>> Stashed changes
+
     //-------------------------------------------------------
     // DECLARE YOUR OWN VARIABLES AND FUNCTIONS HERE
-=======
 
     static float shipX;
     static float shipY;
@@ -43,38 +36,6 @@ public class Student28 extends PodPlugIn {
     static float CheckPointY;
 
     static float speedShip;
-
-<<<<<<< HEAD
->>>>>>> Lexo
-=======
-
->>>>>>> Lexo
-    public  void speed()
-    {
-        if (getNextCheckPointDistance() > 3)
-            incSpeed(1f);
-        else if (getNextCheckPointDistance() > 1)
-            incSpeed(0.6f);
-        if (getNextCheckPointDistance() < turnNextCheck && delta < getNextCheckPointDistance())
-        {
-            System.out.println("test");
-            float x_check = getCheckPointPositionX(getNextCheckPointIndex() + 1);
-            float y_check = getCheckPointPositionY(getNextCheckPointIndex() + 1);
-           // getNextCheckPointDistance();
-            turnTowardPosition(x_check, y_check);
-            delta = getNextCheckPointDistance();
-
-        }
-        else
-            turnTowardNextCheckPoint();
-
-     //       incSpeed( 0);
-
-        if (getShipBoostLevel() == 100 && getNextCheckPointDistance() > 13f && getPreviousCheckPointDistance() > 4)
-        {
-            useBoost();
-        }
-    }
 
     public static float radiantToDegres(float radiant)
     {
@@ -139,7 +100,7 @@ public class Student28 extends PodPlugIn {
         {
             incSpeed(0.8f);
             System.out.println("boucle 1");
-            if (getShipBoostLevel() == 100 && getNextCheckPointDistance() > 11 && getPreviousCheckPointDistance() > 4)
+            if (getShipBoostLevel() == 100 && getNextCheckPointDistance2() > 11 && getPreviousCheckPointDistance() > 4)
             {
                 useBoost();
             }
@@ -240,10 +201,6 @@ public class Student28 extends PodPlugIn {
         selectShip(1);
         setPlayerColor( 255, 255, getPlayerColorBlue(), 255);
 
-       //  tourner();
-      //  if (getNextCheckPointDistance() < turnNextCheck)
-        //turnTowardNextCheckPoint();
-        //speed();
         BoostAndBatterie();
 
         // END OF CODE AREA
