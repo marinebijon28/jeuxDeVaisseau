@@ -101,43 +101,17 @@ public class Student28 extends PodPlugIn {
             incSpeed(0.8f);
             System.out.println("boucle 1");
             if (getShipBoostLevel() == 100 && getNextCheckPointDistance2() > 11 && getPreviousCheckPointDistance() > 4)
-            {
                 useBoost();
-            }
         }
         else if(getSecondCheckPointDistance() < 10 && speedShip > 6)
-        {
             incSpeed(0.4f);
-        }
         else if(getNextCheckPointDistance2() < 6 && getNextCheckPointDistance2() > 3)
-        {
             incSpeed(0.5f);
-        }
         else if( speedShip < 2)
-        {
             incSpeed(0.5f);
-        }
         else if(speedShip > 6)
-        {
             incSpeed(0.3f);
-        }
 
-
-//        if(tonnageBattery > 50 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
-//        {
-//            incSpeed(0.6f);
-//            System.out.println("boucle 2");
-//        }
-//        else if(tonnageBattery <= 25 && isNextCheckPointCharging() == true && getNextCheckPointDistance() < 3)
-//        {
-//            incSpeed(0.3f);
-//            System.out.println("boucle 3");
-//        }
-//        else if(isNextCheckPointCharging() == false && getNextCheckPointDistance() > 13 && getShipBoostLevel() == 100)
-//        {
-//            useBoost();
-//            System.out.println("boucle 4");
-//        }
         if (getNextCheckPointDistance2() < 4 && speedShip >3 )
         {
             System.out.println("test");
@@ -161,7 +135,7 @@ public class Student28 extends PodPlugIn {
     public float distance(float X1, float Y1,float CX, float CY)
     {
         float resultSQRT;
-        resultSQRT = ((CX - X1)*(CX - X1) + (CY - Y1)*(CY - Y1));
+        resultSQRT = sqrt((CX - X1)*(CX - X1) + (CY - Y1)*(CY - Y1));
         return resultSQRT;
     }
     public float getNextCheckPointDistance2()
